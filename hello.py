@@ -1,3 +1,5 @@
+"""Missing module docstring (missing-module-docstring)"""
+
 print("hello world")
 
 example_list = [
