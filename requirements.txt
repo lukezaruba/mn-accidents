@@ -1,0 +1,8 @@
+python==3.9.17
+pandas==2.0.3
+geopandas
+arcgis==2.1.0.3
+requests
+bs4
+pysal
+pickle #Saving weights for spatial lag calcs
