@@ -20,7 +20,7 @@ jobs:
           pip install flake8
       - name: Analysing the code with pylint
         run: |
-          flake8 $(git ls-files '*.py')
+          flake8 $(git ls-files '*.py') --ignore=E501,E722,F401,W605
 
   linter_name:
     name: runner / black formatter

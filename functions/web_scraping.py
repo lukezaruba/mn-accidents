@@ -103,9 +103,9 @@ class QueryURLs:
         numbers = []
 
         for link in soup.findAll("a"):
-            l = link.get("href")
-            if "/MSPMedia2/IncidentDisplay/" in str(l):
-                numbers.append(int(l.replace("/MSPMedia2/IncidentDisplay/", "")))
+            href = link.get("href")
+            if "/MSPMedia2/IncidentDisplay/" in str(href):
+                numbers.append(int(href.replace("/MSPMedia2/IncidentDisplay/", "")))
 
         return numbers
 
