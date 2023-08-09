@@ -33,7 +33,7 @@ const Header = ({ currentPage, onPageChange }) => {
     <AppBar position="static" sx={{ backgroundColor: "#7a0019" }}>
       <Toolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <img src="/UMN_lgM-D2D-wdmk-gold-wh.png" alt="Logo" height={40} />
+          <img src="/logo.png" alt="Logo" height={40} />
         </Box>
         <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
           Minnesota Fatal & Serious Injury Accident Viewer
