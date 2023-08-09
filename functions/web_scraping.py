@@ -366,8 +366,11 @@ class Loader:
         self.new_icr = [
             icr for icr in self._incoming_icr_ints if icr not in self.existing_icr
         ]
-        self.accident_df = accident_df[accident_df["icr"].isin(self.new_icr)]
-        self.vehicle_df = vehicle_df[vehicle_df["icr"].isin(self.new_icr)]
+
+        self.accident_df = accident_df[
+            accident_df["icr"].astype(int).isin(self.new_icr)
+        ]
+        self.vehicle_df = vehicle_df[vehicle_df["icr"].astype(int).isin(self.new_icr)]
 
     def _get_current_icr(self):
         query = "SELECT icr FROM raw_accidents"
@@ -440,10 +443,14 @@ class Loader:
             "alcohol": str,
             "icr": int,
             "gender": str,
-            "age": int,
         }
 
         self.vehicle_df = self.vehicle_df.astype(dtypes_dict)
+
+        # Handling Unknown Ages
+        self.vehicle_df["age"] = self.vehicle_df["age"].apply(
+            lambda age: int(age) if age.isdigit() else 999
+        )
 
         # Name Space Fix
         self.vehicle_df["person_name"] = self.vehicle_df["person_name"].apply(
@@ -530,4 +537,4 @@ def main(debug=False):
 
 
 if __name__ == "__main__":
-    main(debug=True)
+    main(debug=False)
