@@ -17,7 +17,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 
 const Header = ({ currentPage, onPageChange }) => {
-  const pages = ["Page 1", "Page 2"];
+  const pages = ["Forecast", "Historical"];
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -33,7 +33,13 @@ const Header = ({ currentPage, onPageChange }) => {
     <AppBar position="static" sx={{ backgroundColor: "#7a0019" }}>
       <Toolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <img src="/logo.png" alt="Logo" height={40} />
+          <a href="https://cla.umn.edu/mgis" target="_blank" rel="noreferrer">
+            <img
+              src={process.env.PUBLIC_URL + "/logo.png"}
+              alt="Logo"
+              height={40}
+            />
+          </a>
         </Box>
         <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
           Minnesota Fatal & Serious Injury Accident Viewer
@@ -63,7 +69,8 @@ const Header = ({ currentPage, onPageChange }) => {
           <DialogTitle>Information</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              This is the information you want to display.
+              This is a test layout for the framework of the Minnesota Accident
+              Viewer application.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

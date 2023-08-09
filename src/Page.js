@@ -2,8 +2,8 @@ import React from "react";
 
 const Page = ({ currentPage }) => {
   const pageUrls = [
-    "https://fiona.readthedocs.io/en/stable/manual.html",
-    "https://geopandas.org/en/stable/index.html",
+    "https://clausa.app.carto.com/map/edd66e07-995f-43a8-aaf2-8b20dad7bdbd",
+    "https://clausa.app.carto.com/map/12dae3a8-a096-472c-8ab8-baabcfe1de9c",
   ];
 
   return (
