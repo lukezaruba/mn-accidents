@@ -63,7 +63,7 @@ def _geocode_address(address):
 
 # Get Existing Data for ICRs - if passed in, use those, else, compare raw and geo and use missing icrs not in geo
 def extract_existing_data(db, icr_tuple=None):
-    if icr_tuple == None:
+    if icr_tuple is None:
         raw_query = "SELECT icr FROM raw_accidents"
         geo_query = "SELECT icr FROM geo_accidents"
 
