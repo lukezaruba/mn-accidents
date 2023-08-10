@@ -6,7 +6,7 @@ identify the records not currently in the database, and load the
 new records into the database.
 
 @Author: Luke Zaruba
-@Date: Aug 2, 2023
+@Date: Aug 9, 2023
 @Version: 0.0.0
 """
 
@@ -21,7 +21,6 @@ import requests
 from bs4 import BeautifulSoup
 from sqlalchemy import INTEGER, TEXT, TIMESTAMP, create_engine, text
 from sqlalchemy.engine import URL
-import psycopg2
 
 
 class QueryURLs:
