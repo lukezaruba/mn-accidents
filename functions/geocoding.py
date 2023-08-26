@@ -3,7 +3,7 @@
 """
 Function to geocode incidents that are not currently
 in the geocoded table, based on ICRs passed from
-new records into the databasescraping function.
+new records via the scraping function, into the database.
 
 @Author: Luke Zaruba
 @Date: Aug 9, 2023
@@ -97,44 +97,56 @@ def geocode(rows):
     upload_list = []
 
     for record in rows:
-        # Standardization
-        ai_result = _generate_ai_response(record[4])
-        new_record = tuple(record) + (ai_result,)
+        try:
+            # Standardization
+            # ai_result = _generate_ai_response(record[4])
+            # new_record = tuple(record) + (ai_result,)
 
-        # Geocoding
-        gc_result = _geocode_address(new_record[7])
+            new_record = tuple(record)
 
-        new_record += gc_result
+            # Geocoding
+            gc_result = _geocode_address(new_record[4])  # 7 -> 4
 
-        # Point WKT
-        new_record += (f"POINT({new_record[8]} {new_record[9]})",)
+            new_record += gc_result
 
-        # Fix Times
-        new_record = (
-            new_record[:2]
-            + (new_record[2].strftime("%Y-%m-%d %H:%M:%S"),)
-            + new_record[3:]
-        )
+            # Point WKT
+            new_record += (f"POINT({new_record[7]} {new_record[8]})",)  # 8 -> 7, 9 -> 8
 
-        upload_list.append(new_record)
+            # Fix Times
+            new_record = (
+                new_record[:2]
+                + (new_record[2].strftime("%Y-%m-%d %H:%M:%S"),)
+                + (new_record[3],)
+                + (new_record[4].replace("'", "''"),)
+                + new_record[5:]
+            )
+
+            upload_list.append(new_record)
+        except:
+            pass
 
     return upload_list
 
 
 def insert_records(db, insert_list):
-    insert_query = "INSERT INTO geo_accidents (icr, incident_type, incident_date, district, location_description, road_condition, vehicles_involved, strd_location_description, x, y, geom) VALUES "
+    if len(insert_list) != 0:
+        insert_query = "INSERT INTO geo_accidents (icr, incident_type, incident_date, district, location_description, road_condition, vehicles_involved, x, y, geom) VALUES "
 
-    for record in insert_list:
-        insert_query += f"{record}, "
+        for record in insert_list:
+            insert_query += f"{record}, "
 
-    insert_query = insert_query[:-2]
+        insert_query = insert_query[:-2]
 
-    with db.connect() as connection:
-        connection.execute(text(insert_query))
-        connection.commit()
+        insert_query = insert_query.replace('"', "'")
+
+        with db.connect() as connection:
+            connection.execute(text(insert_query))
+            connection.commit()
+    else:
+        return
 
 
-def main(debug=False):
+def main(manual=False):
     # Creating Database Engine Instance
     _db_url = URL.create(
         drivername="postgresql",
@@ -147,10 +159,10 @@ def main(debug=False):
     db = create_engine(_db_url)
 
     # For Debugging
-    if debug:
-        debug_icr = tuple([23300015, 23200014])
+    if manual:
+        manual_icr = tuple([23270768, 23200808])
 
-        rows_to_gc = extract_existing_data(db, debug_icr)
+        rows_to_gc = extract_existing_data(db, manual_icr)
 
         gc_out = geocode(rows_to_gc)
 
@@ -165,4 +177,4 @@ def main(debug=False):
 
 
 if __name__ == "__main__":
-    main(debug=True)
+    main(manual=False)

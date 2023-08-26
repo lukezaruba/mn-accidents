@@ -166,12 +166,17 @@ class ScrapeRecords:
             ],
         )
 
-        self.scraped_accident_df["vehicles_involved"] = (
-            self.scraped_accident_df["vehicles_involved"]
-            .str.split(" ")
-            .str[0]
-            .astype(int)
-        )
+        # self.scraped_accident_df["vehicles_involved"] = (
+        #     self.scraped_accident_df["vehicles_involved"]
+        #     .str.split(" ")
+        #     .str[0]
+        #     .astype(int)
+        # )
+
+        # Handling Unknown Vehicles Involved
+        self.scraped_accident_df["vehicles_involved"] = self.scraped_accident_df[
+            "vehicles_involved"
+        ].apply(lambda n: int(n.split(" ")[0]) if n.split(" ")[0].isdigit() else 999)
 
         # Vehicles DF
         try:
@@ -448,7 +453,7 @@ class Loader:
 
         # Handling Unknown Ages
         self.vehicle_df["age"] = self.vehicle_df["age"].apply(
-            lambda age: int(age) if age.isdigit() else 999
+            lambda age: int(age) if isinstance(age, str) and age.isdigit() else 999
         )
 
         # Name Space Fix
@@ -492,11 +497,12 @@ class Loader:
         return self.new_icr
 
 
-def main(debug=False):
-    if debug:
+def main(manual=False):
+    if manual:
         start_day = "01"
-        end_day = "02"
-        start_month = end_month = "01"
+        end_day = "19"
+        start_month = "07"
+        end_month = "08"
         start_year = end_year = "2023"
 
     else:
@@ -536,4 +542,4 @@ def main(debug=False):
 
 
 if __name__ == "__main__":
-    main(debug=False)
+    main(manual=True)

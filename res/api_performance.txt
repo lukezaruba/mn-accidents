@@ -1,0 +1,66 @@
+GoLang (with go run main.go) - AVG: 0.14847280000000002s
+Time: 0.211126s
+Time: 0.151769s
+Time: 0.165492s
+Time: 0.141810s
+Time: 0.139958s
+Time: 0.129452s
+Time: 0.130290s
+Time: 0.141423s
+Time: 0.128424s
+Time: 0.144984s
+
+Python (with python api.py) - AVG: 0.1367565s
+Time: 0.216264s
+Time: 0.128971s
+Time: 0.131619s
+Time: 0.124121s
+Time: 0.129303s
+Time: 0.129659s
+Time: 0.131523s
+Time: 0.124826s
+Time: 0.124054s
+Time: 0.127225s
+
+Go (with go build, ./goapi) - AVG: 0.14369059999999997s
+Time: 0.201977s
+Time: 0.131715s
+Time: 0.153967s
+Time: 0.144347s
+Time: 0.129049s
+Time: 0.137565s
+Time: 0.131366s
+Time: 0.132135s
+Time: 0.145587s
+Time: 0.129198s
+
+Go on spatial indexed table (with go build, ./goapi) - AVG: 0.14064649999999998
+Time: 0.229993s
+Time: 0.124884s
+Time: 0.134463s
+Time: 0.131292s
+Time: 0.125567s
+Time: 0.134469s
+Time: 0.128735s
+Time: 0.133938s
+Time: 0.127561s
+Time: 0.135563s
+
+Go with pooling/concurrency/json marshal(with go run) - AVG: = 0.2782978
+Time: 0.337091s
+Time: 0.273376s
+Time: 0.279520s
+Time: 0.275198s
+Time: 0.263066s
+Time: 0.275810s
+Time: 0.271935s
+Time: 0.268358s
+Time: 0.268499s
+Time: 0.270125s
+
+
+
+for i in {1..10}
+    do
+        curl -w "Time: %{time_total}s\n" -o dev/null -s http://localhost:8080/points/geojson
+    done
