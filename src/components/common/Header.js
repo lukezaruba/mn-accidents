@@ -74,7 +74,7 @@ const Header = ({ currentPage, onPageChange }) => {
               <br></br>
               <br></br>
               <b>
-                ALL DATA CURRENTLY WITHIN THIS APPLICATION IS FAKE AND IS FOR
+                ALL DATA CURRENTLY USED IN THIS APPLICATION IS FAKE AND IS FOR
                 TESTING ONLY.
               </b>
             </DialogContentText>
