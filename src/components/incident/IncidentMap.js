@@ -2,10 +2,14 @@ import React from "react";
 import DeckGL from "@deck.gl/react";
 import { Map } from "react-map-gl";
 import { GeoJsonLayer } from "@deck.gl/layers";
-import maplibregl from "maplibre-gl";
+import mapboxgl from "mapbox-gl";
 
-const MAP_STYLE =
-  "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
+// prettier-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
+const MAPBOX_ACCESS_TOKEN =
+  "pk.eyJ1IjoiemFydWIwMDYiLCJhIjoiY2xoOGFuaGZtMDZxYzNlcXJqNzAyb3RuaiJ9.51-GRZuvAnqX4z00ISy26w";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -71,12 +75,10 @@ function IncidentMap() {
         }}
       >
         <Map
-          reuseMaps
-          mapLib={maplibregl}
-          mapStyle={MAP_STYLE}
-          initialViewState={{ ...INITIAL_VIEW_STATE }}
+          mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
+          initialViewState={{ ...INITIAL_VIEW_STATE }} // Pass the view state to ReactMapGL
           onViewportChange={() => {}}
-          preventStyleDiffing={true}
+          mapStyle="mapbox://styles/mapbox/streets-v12"
           style={{ width: "100%", height: "100%" }}
         />
       </DeckGL>

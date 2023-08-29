@@ -2,6 +2,11 @@ import React from "react";
 import DeckGL from "@deck.gl/react";
 import { Map } from "react-map-gl";
 import { GeoJsonLayer } from "@deck.gl/layers";
+import mapboxgl from "mapbox-gl";
+
+// prettier-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiemFydWIwMDYiLCJhIjoiY2xoOGFuaGZtMDZxYzNlcXJqNzAyb3RuaiJ9.51-GRZuvAnqX4z00ISy26w";
