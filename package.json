@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@deck.gl/layers": "^8.9.26",
+    "@deck.gl/react": "^8.9.26",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
@@ -10,10 +12,18 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "d3-request": "^1.0.6",
+    "deck.gl": "^8.9.26",
+    "echarts": "^5.4.3",
+    "luma.gl": "^7.3.2",
+    "mapbox-gl": "^2.15.0",
+    "maplibre-gl": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-map-gl": "^7.1.5",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +43,9 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not safari < 12",
+      "not chrome < 80"
     ],
     "development": [
       "last 1 chrome version",
@@ -42,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^5.0.0"
   },
   "homepage": "http://lukezaruba.github.io/mn-accidents"

@@ -17,7 +17,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 
 const Header = ({ currentPage, onPageChange }) => {
-  const pages = ["Forecast", "Historical"];
+  const pages = ["City", "Incident"];
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -44,13 +44,13 @@ const Header = ({ currentPage, onPageChange }) => {
         <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
           Minnesota Fatal & Serious Injury Accident Viewer
         </Typography>
-        {pages.map((page, index) => (
+        {pages.map((page) => (
           <Button
-            key={index}
+            key={page}
             color="inherit"
-            onClick={() => onPageChange(index)}
+            onClick={() => onPageChange(page)}
             sx={{
-              borderBottom: index === currentPage ? "2px solid #fff" : "none",
+              borderBottom: page === currentPage ? "2px solid #fff" : "none",
               "&:hover": {
                 borderBottom: "2px solid #fff",
               },
@@ -71,6 +71,12 @@ const Header = ({ currentPage, onPageChange }) => {
             <DialogContentText>
               This is a test layout for the framework of the Minnesota Accident
               Viewer application.
+              <br></br>
+              <br></br>
+              <b>
+                ALL DATA CURRENTLY WITHIN THIS APPLICATION IS FAKE AND IS FOR
+                TESTING ONLY.
+              </b>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
