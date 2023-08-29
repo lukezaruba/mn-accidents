@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/mn-accidents/static/css/main.e6c13ad2.css",
+    "main.js": "/mn-accidents/static/js/main.c2e9dc6f.js",
+    "static/js/483.19d1d0f8.chunk.js": "/mn-accidents/static/js/483.19d1d0f8.chunk.js",
+    "static/js/787.385da454.chunk.js": "/mn-accidents/static/js/787.385da454.chunk.js",
+    "index.html": "/mn-accidents/index.html",
+    "main.e6c13ad2.css.map": "/mn-accidents/static/css/main.e6c13ad2.css.map",
+    "main.c2e9dc6f.js.map": "/mn-accidents/static/js/main.c2e9dc6f.js.map",
+    "483.19d1d0f8.chunk.js.map": "/mn-accidents/static/js/483.19d1d0f8.chunk.js.map",
+    "787.385da454.chunk.js.map": "/mn-accidents/static/js/787.385da454.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.c2e9dc6f.js"
+  ]
+}
