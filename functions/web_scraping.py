@@ -542,4 +542,4 @@ def main(manual=False):
 
 
 if __name__ == "__main__":
-    main(manual=True)
+    main(manual=False)
