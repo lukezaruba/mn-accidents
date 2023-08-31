@@ -14,7 +14,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState("City");
 
   const handlePageChange = (page) => {
-    console.log("Changing page to:", page);
     setCurrentPage(page);
   };
 
