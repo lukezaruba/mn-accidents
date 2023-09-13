@@ -89,38 +89,24 @@ def update_ctu_incident_counts(db):
             connection.commit()
 
 
-# TODO: ???
-# def rebuild_spatial_index(db):
-#     ...
-#     # INDEX
-#     # CREATE INDEX nyc_census_blocks_geom_idx
-#     #     ON nyc_census_blocks
-#     #     USING GIST (geom);
+def global_time_series(db):
+    with db.connect() as connection:
+        # DROP EXISTING TABLE
+        drop_query = "DROP TABLE IF EXISTS glb_wk_time_series"
+        connection.execute(text(drop_query))
+        connection.commit()
 
-# TODO: ???
-# def replace_time_series_table(db):
-#     ...
-#     # TIME SERIES TABLE CREATION
-#     # DROP TABLE time_series IF EXISTS;
-#     # CREATE TABLE time_series AS (
-#     #     WITH all_combinations AS (
-#     #         SELECT
-#     #             ctu.id,
-#     #             generate_series(
-#     #                 min(ga.incident_date)::date,
-#     #                 max(ga.incident_date)::date,
-#     #                 '1 week'::interval
-#     #             )::date AS week
-#     #         FROM ctu
-#     #         CROSS JOIN geo_accidents ga
-#     #         GROUP BY ctu.id
-#     #     )
-#     #     SELECT ac.id, ac.week, COALESCE(COUNT(ga.incident_date), 0) AS record_count
-#     #     FROM all_combinations ac
-#     #     LEFT JOIN geo_accidents ga ON ac.id = ga.city_id AND ac.week = date_trunc('week', ga.incident_date)::date
-#     #     GROUP BY ac.id, ac.week
-#     #     ORDER BY ac.id, ac.week;
-#     # )
+        create_query = """
+        CREATE TABLE IF NOT EXISTS glb_wk_time_series AS
+        SELECT COUNT(*) AS incident_count,
+		date_trunc('week', incident_date)::date AS week
+        FROM geo_accidents
+        WHERE date_trunc('week', incident_date)::date > '2016-12-31'
+        GROUP BY date_trunc('week', incident_date)::date
+        """
+
+        connection.execute(text(create_query))
+        connection.commit()
 
 
 def main():
@@ -140,6 +126,8 @@ def main():
     update_ctu_incident_counts(db)
 
     geocoding_qaqc_table(db)
+
+    global_time_series(db)
 
 
 if __name__ == "__main__":
