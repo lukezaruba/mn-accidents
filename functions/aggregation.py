@@ -99,7 +99,7 @@ def global_time_series(db):
         create_query = """
         CREATE TABLE IF NOT EXISTS glb_wk_time_series AS
         SELECT COUNT(*) AS incident_count,
-		date_trunc('week', incident_date)::date AS week
+        date_trunc('week', incident_date)::date AS week
         FROM geo_accidents
         WHERE date_trunc('week', incident_date)::date > '2016-12-31'
         GROUP BY date_trunc('week', incident_date)::date
