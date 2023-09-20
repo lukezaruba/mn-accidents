@@ -46,7 +46,7 @@ function getTooltip({ object }) {
 function IncidentMap() {
   const layer = new GeoJsonLayer({
     id: "GeoJsonLayer",
-    data: "http://localhost:8080/points/geojson",
+    data: "http://localhost:8080/api/v1/incidents/geojson",
     pointType: "circle",
     filled: true,
     getFillColor: (d) => getColor(d.properties.incident_type),

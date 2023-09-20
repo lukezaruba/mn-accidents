@@ -25,6 +25,69 @@ const CitySidebar = ({ children }) => {
     }));
   };
 
+  // Alcohol Data
+  const [alcoholData, setAlcoholData] = useState([]);
+
+  useEffect(() => {
+    // Make the API request here
+    fetch("http://127.0.0.1:8080/api/v1/metrics/alcohol")
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the fetched data in the state
+        setAlcoholData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const transformedAlcoholData = alcoholData.map(([name, value]) => ({
+    name,
+    value,
+  }));
+
+  // Seatbelt Data
+  const [seatbeltData, setSeatbeltData] = useState([]);
+
+  useEffect(() => {
+    // Make the API request here
+    fetch("http://127.0.0.1:8080/api/v1/metrics/seatbelt")
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the fetched data in the state
+        setSeatbeltData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const transformedSeatbeltData = seatbeltData.map(([name, value]) => ({
+    name,
+    value,
+  }));
+
+  // Condition Data
+  const [conditionData, setConditionData] = useState([]);
+
+  useEffect(() => {
+    // Make the API request here
+    fetch("http://127.0.0.1:8080/api/v1/metrics/condition")
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the fetched data in the state
+        setConditionData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const transformedConditionData = conditionData.map(([name, value]) => ({
+    name,
+    value,
+  }));
+
   const pieData = [
     { value: 4310, name: "Yes" },
     { value: 231, name: "No" },
@@ -84,7 +147,7 @@ const CitySidebar = ({ children }) => {
               onToggle={() => toggleChartVisibility("alcohol")}
             >
               <CityAlcoholChart
-                pieData={pieData}
+                pieData={transformedAlcoholData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
               />
@@ -95,7 +158,7 @@ const CitySidebar = ({ children }) => {
               onToggle={() => toggleChartVisibility("seatbelt")}
             >
               <CitySeatbeltChart
-                pieData={pieData}
+                pieData={transformedSeatbeltData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
               />
@@ -106,7 +169,7 @@ const CitySidebar = ({ children }) => {
               onToggle={() => toggleChartVisibility("condition")}
             >
               <CityConditionChart
-                pieData={pieData}
+                pieData={transformedConditionData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
               />

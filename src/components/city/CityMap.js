@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DeckGL from "@deck.gl/react";
 import { Map } from "react-map-gl";
 import { GeoJsonLayer } from "@deck.gl/layers";
@@ -22,8 +22,11 @@ const INITIAL_VIEW_STATE = {
 
 // Symbology settings
 const colorMap = {
-  Injury: [252, 196, 25, 175],
-  Fatal: [199, 15, 15, 225],
+  LL: [0, 0, 255, 200],
+  HH: [255, 0, 0, 200],
+  LH: [30, 144, 255, 200],
+  HL: [240, 128, 128, 200],
+  NS: [111, 111, 111, 200],
 };
 
 function getColor(colorValue) {
@@ -43,27 +46,42 @@ function getTooltip({ object }) {
 }
 
 // Map
-function IncidentMap() {
+function CityMap() {
+  const [data, setData] = useState(null);
+
+  // Load GeoJSON data when the component mounts
+  useEffect(() => {
+    // Fetch your GeoJSON data and set it in the state
+    fetch("http://localhost:8080/api/v1/ctu/geojson")
+      .then((response) => response.json())
+      .then((data) => console.log("GeoJSON data:", data), setData(data))
+      .catch((error) => console.error("Error loading data:", error));
+  }, []);
+
+  if (!data) {
+    // Loading indicator or error message can be added here
+    return <div>Loading...</div>;
+  }
+
   const layer = new GeoJsonLayer({
-    id: "GeoJsonLayer",
-    data: "http://localhost:8080/points/geojson",
-    pointType: "circle",
+    id: "CTU",
+    data: data,
     filled: true,
-    getFillColor: (d) => getColor(d.properties.incident_type),
+    getFillColor: (d) => getColor(d.features.properties.lmi_label),
     stroked: true,
-    getPointRadius: 4,
-    pointRadiusUnits: "pixels",
+    getLineColor: [0, 0, 0],
+    getLineWidth: 1,
     opacity: 1,
     pickable: true,
     visible: true,
-    getPosition: (d) => d.coordinates,
+    getPosition: (d) => d.geometry.coordinates,
   });
 
   return (
     <div style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
       <DeckGL
         layers={layer}
-        getTooltip={getTooltip}
+        //getTooltip={getTooltip}
         initialViewState={INITIAL_VIEW_STATE}
         controller={true}
         style={{
@@ -86,4 +104,4 @@ function IncidentMap() {
   );
 }
 
-export default IncidentMap;
+export default CityMap;
