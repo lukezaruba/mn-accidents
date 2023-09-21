@@ -10,8 +10,8 @@ const Sidebar = ({ children }) => {
 
   const [chartsVisibility, setChartsVisibility] = useState({
     alcohol: true,
-    seatbelt: true,
-    condition: true,
+    seatbelt: false,
+    condition: false,
   });
 
   const toggleSidebar = () => {
@@ -100,7 +100,7 @@ const Sidebar = ({ children }) => {
         position: "relative",
         top: 0,
         left: 0,
-        backgroundColor: "#f9f7f6",
+        backgroundColor: "#f0efee",
         boxShadow: isSidebarOpen ? "2px 0px 5px rgba(0, 0, 0, 0.2)" : "none",
         overflowX: "hidden",
         transition: "width 0.5s, background-color 0.5s, box-shadow 0.5s",

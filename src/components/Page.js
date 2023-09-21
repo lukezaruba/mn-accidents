@@ -3,8 +3,8 @@ import Sidebar from "./Sidebar";
 
 const Page = () => {
   return (
-    <div style={{ flexGrow: 1, height: "calc(100vh - 64px)" }}>
-      <div style={{ display: "flex" }}>
+    <div style={{ flexGrow: 1, overflow: "hidden" }}>
+      <div style={{ display: "flex", height: "100%" }}>
         <Sidebar></Sidebar>
         <div
           style={{
@@ -15,9 +15,7 @@ const Page = () => {
         >
           <iframe
             title="Embedded Map"
-            src={
-              "https://experience.arcgis.com/experience/5f93e10e830f4ea3a33d816bf35b8885/"
-            }
+            src="https://experience.arcgis.com/experience/5f93e10e830f4ea3a33d816bf35b8885/"
             width="100%"
             height="100%"
           ></iframe>

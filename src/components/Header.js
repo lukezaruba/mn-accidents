@@ -52,14 +52,28 @@ const Header = () => {
           <DialogTitle>Information</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              This is a test layout for the framework of the Minnesota Accident
-              Viewer application.
+              This application enables users to view serious and fatal traffic
+              accidents across Minnesota. The data contained in this application
+              starts from 2017 and continues up to the present.
+              <br></br>
+              <br></br>
+              Data and all analyses are currently updated weekly using data from
+              the MN State Patrol{" "}
+              <a href="https://app.dps.mn.gov/MSPMedia2/Current">
+                Crash Updates
+              </a>{" "}
+              page. For other data and analyses, check out the{" "}
+              <a href="https://mncrash.state.mn.us/">MNCrash</a> application
+              from the MN DPS.
               <br></br>
               <br></br>
               <b>
-                ALL DATA CURRENTLY USED IN THIS APPLICATION IS FAKE AND IS FOR
-                TESTING ONLY.
+                NOTE: The data contained within this application was scraped
+                (collected) from the internet and may or may not be accurate.
               </b>
+              <br></br>
+              <br></br>
+              Created by Luke Zaruba, University of Minnesota, MGIS Programs
             </DialogContentText>
           </DialogContent>
           <DialogActions>
