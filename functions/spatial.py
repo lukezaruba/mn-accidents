@@ -12,6 +12,7 @@ analyses on accident data.
 
 import os
 
+import functions_framework
 import geopandas as gpd
 import numpy as np
 import pandas as pd
@@ -234,6 +235,7 @@ def _count_overlapping_features(in_gdf):
     return new_gdf
 
 
+@functions_framework.http
 def main():
     # Creating Database Engine Instance
     _db_url = URL.create(

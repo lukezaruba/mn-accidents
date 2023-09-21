@@ -11,11 +11,9 @@ Alters/updates values in ctu_accidents & time_series tables.
 @Version: 0.0.0
 """
 
-import json
 import os
 
 import functions_framework
-import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
 
@@ -109,6 +107,7 @@ def global_time_series(db):
         connection.commit()
 
 
+@functions_framework.http
 def main():
     # Creating Database Engine Instance
     _db_url = URL.create(

@@ -497,6 +497,7 @@ class Loader:
         return self.new_icr
 
 
+@functions_framework.http
 def main(manual=False):
     if manual:
         start_day = "01"
@@ -542,4 +543,4 @@ def main(manual=False):
 
 
 if __name__ == "__main__":
-    main(manual=False)
+    main()
