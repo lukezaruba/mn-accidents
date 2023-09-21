@@ -10,7 +10,6 @@ new records via the scraping function, into the database.
 @Version: 0.0.0
 """
 
-import json
 import os
 
 import functions_framework
@@ -146,6 +145,7 @@ def insert_records(db, insert_list):
         return
 
 
+@functions_framework.http
 def main(manual=False):
     # Creating Database Engine Instance
     _db_url = URL.create(
@@ -177,4 +177,4 @@ def main(manual=False):
 
 
 if __name__ == "__main__":
-    main(manual=False)
+    main()
