@@ -5,8 +5,6 @@
   "dependencies": {
     "@emotion/react": "",
     "@emotion/styled": "",
-    "@material-ui/core": "",
-    "@material-ui/icons": "",
     "@mui/icons-material": "",
     "@mui/material": "",
     "@testing-library/jest-dom": "",
