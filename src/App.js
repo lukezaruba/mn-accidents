@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import CssBaseline from "@mui/material/CssBaseline"; // Import CssBaseline
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Header from "./components/common/Header";
-import Page from "./components/common/Page";
+import Header from "./components/Header";
+import Page from "./components/Page";
 
 const theme = createTheme({
   typography: {
@@ -11,12 +11,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("City");
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -28,8 +22,8 @@ function App() {
           overflow: "hidden",
         }}
       >
-        <Header currentPage={currentPage} onPageChange={handlePageChange} />
-        <Page currentPage={currentPage} />
+        <Header />
+        <Page />
       </div>
     </ThemeProvider>
   );

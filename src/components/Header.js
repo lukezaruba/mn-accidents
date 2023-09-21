@@ -16,9 +16,7 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 
-const Header = ({ currentPage, onPageChange }) => {
-  const pages = ["City", "Incident"];
-
+const Header = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleDialogOpen = () => {
@@ -44,21 +42,6 @@ const Header = ({ currentPage, onPageChange }) => {
         <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
           Minnesota Fatal & Serious Injury Accident Viewer
         </Typography>
-        {pages.map((page) => (
-          <Button
-            key={page}
-            color="inherit"
-            onClick={() => onPageChange(page)}
-            sx={{
-              borderBottom: page === currentPage ? "2px solid #fff" : "none",
-              "&:hover": {
-                borderBottom: "2px solid #fff",
-              },
-            }}
-          >
-            {page}
-          </Button>
-        ))}
         {/* Information Button */}
         <Tooltip title="Information">
           <IconButton color="inherit" onClick={handleDialogOpen}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
-const CityConditionChart = ({ pieData, isVisible, expandedWidth }) => {
+const SeatbeltChart = ({ pieData, isVisible, expandedWidth }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
@@ -69,7 +69,7 @@ const CityConditionChart = ({ pieData, isVisible, expandedWidth }) => {
         },
         series: [
           {
-            name: "Road Condition",
+            name: "Seatbelt Usage",
             type: "pie",
             avoidLabelOverlap: false,
             itemStyle: {
@@ -110,4 +110,4 @@ const CityConditionChart = ({ pieData, isVisible, expandedWidth }) => {
   );
 };
 
-export default CityConditionChart;
+export default SeatbeltChart;

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import CityAlcoholChart from "./CityAlcoholChart";
-import CitySeatbeltChart from "./CitySeatbeltChart";
-import CityConditionChart from "./CityConditionChart";
+import AlcoholChart from "./AlcoholChart";
+import SeatbeltChart from "./SeatbeltChart";
+import ConditionChart from "./ConditionChart";
 
-const CitySidebar = ({ children }) => {
+const Sidebar = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const [chartsVisibility, setChartsVisibility] = useState({
@@ -30,7 +30,7 @@ const CitySidebar = ({ children }) => {
 
   useEffect(() => {
     // Make the API request here
-    fetch("http://127.0.0.1:8080/api/v1/metrics/alcohol")
+    fetch("https://mn-accidents-v6lgirycma-uc.a.run.app/api/v1/metrics/alcohol")
       .then((response) => response.json())
       .then((data) => {
         // Set the fetched data in the state
@@ -51,7 +51,9 @@ const CitySidebar = ({ children }) => {
 
   useEffect(() => {
     // Make the API request here
-    fetch("http://127.0.0.1:8080/api/v1/metrics/seatbelt")
+    fetch(
+      "https://mn-accidents-v6lgirycma-uc.a.run.app/api/v1/metrics/seatbelt"
+    )
       .then((response) => response.json())
       .then((data) => {
         // Set the fetched data in the state
@@ -72,7 +74,9 @@ const CitySidebar = ({ children }) => {
 
   useEffect(() => {
     // Make the API request here
-    fetch("http://127.0.0.1:8080/api/v1/metrics/condition")
+    fetch(
+      "https://mn-accidents-v6lgirycma-uc.a.run.app/api/v1/metrics/condition"
+    )
       .then((response) => response.json())
       .then((data) => {
         // Set the fetched data in the state
@@ -87,12 +91,6 @@ const CitySidebar = ({ children }) => {
     name,
     value,
   }));
-
-  const pieData = [
-    { value: 4310, name: "Yes" },
-    { value: 231, name: "No" },
-    { value: 1732, name: "Unknown" },
-  ];
 
   return (
     <div
@@ -146,7 +144,7 @@ const CitySidebar = ({ children }) => {
               isVisible={isSidebarOpen && chartsVisibility.alcohol}
               onToggle={() => toggleChartVisibility("alcohol")}
             >
-              <CityAlcoholChart
+              <AlcoholChart
                 pieData={transformedAlcoholData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
@@ -157,7 +155,7 @@ const CitySidebar = ({ children }) => {
               isVisible={isSidebarOpen && chartsVisibility.seatbelt}
               onToggle={() => toggleChartVisibility("seatbelt")}
             >
-              <CitySeatbeltChart
+              <SeatbeltChart
                 pieData={transformedSeatbeltData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
@@ -168,7 +166,7 @@ const CitySidebar = ({ children }) => {
               isVisible={isSidebarOpen && chartsVisibility.condition}
               onToggle={() => toggleChartVisibility("condition")}
             >
-              <CityConditionChart
+              <ConditionChart
                 pieData={transformedConditionData}
                 isVisible={isSidebarOpen}
                 expandedWidth="250px"
@@ -219,4 +217,4 @@ const CollapsibleChart = ({ title, isVisible, onToggle, children }) => {
   );
 };
 
-export default CitySidebar;
+export default Sidebar;
