@@ -12,6 +12,7 @@ import os
 
 from flask import Flask, jsonify
 from flask_restx import Api, Namespace, Resource
+from flask_cors import CORS
 
 from db import Database, Query
 
@@ -20,6 +21,8 @@ db = Database.initialize_from_env()
 
 # Configure API
 app = Flask(__name__)
+CORS(app)
+
 api = Api(
     app,
     prefix="/api/v1",
