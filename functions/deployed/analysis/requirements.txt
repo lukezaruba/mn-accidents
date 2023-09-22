@@ -1,0 +1,10 @@
+flask==2.3.2
+functions_framework==3.4.0
+geoalchemy2==0.14.1
+geopandas==0.13.2
+pandas==2.0.3
+psycopg2==2.9.6
+pysal==23.7
+requests==2.31.0
+shapely==2.0.1
+sqlalchemy==2.0.19
