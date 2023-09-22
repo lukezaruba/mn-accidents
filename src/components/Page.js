@@ -1,11 +1,11 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
 
 const Page = () => {
   return (
     <div style={{ flexGrow: 1, overflow: "hidden" }}>
       <div style={{ display: "flex", height: "100%" }}>
-        <Sidebar></Sidebar>
+        {/* <Sidebar></Sidebar> */}
         <div
           style={{
             flex: 1,
