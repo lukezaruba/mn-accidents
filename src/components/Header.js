@@ -30,7 +30,13 @@ const Header = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#7a0019" }}>
       <Toolbar>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            position: "absolute",
+            left: "1%",
+            transform: "translateX(-1%)",
+          }}
+        >
           <a href="https://cla.umn.edu/mgis" target="_blank" rel="noreferrer">
             <img
               src={process.env.PUBLIC_URL + "/logo.png"}
@@ -39,12 +45,27 @@ const Header = () => {
             />
           </a>
         </Box>
-        <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
+        <Typography
+          variant="h6"
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
           Minnesota Fatal & Serious Injury Accident Viewer
         </Typography>
         {/* Information Button */}
         <Tooltip title="Information">
-          <IconButton color="inherit" onClick={handleDialogOpen}>
+          <IconButton
+            color="inherit"
+            onClick={handleDialogOpen}
+            sx={{
+              position: "absolute",
+              right: "1%",
+              transform: "translateX(1%)",
+            }}
+          >
             <SvgIcon component={InfoIcon} />
           </IconButton>
         </Tooltip>
