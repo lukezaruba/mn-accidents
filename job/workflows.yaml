@@ -1,0 +1,25 @@
+main:
+  params: [input]
+  steps:
+    - scrape:
+        call: http.get
+        args:
+          url: "https://us-central1-minnesota-accidents-398916.cloudfunctions.net/scraper"
+        result: scrapeResult
+    - geocode:
+        call: http.get
+        args:
+          url: "https://us-central1-minnesota-accidents-398916.cloudfunctions.net/geocoder"
+        result: geocodeResult
+    - aggregate:
+        call: http.get
+        args:
+          url: "https://us-central1-minnesota-accidents-398916.cloudfunctions.net/aggregator"
+        result: aggregateResult
+    - analyze:
+        call: http.get
+        args:
+          url: "https://us-central1-minnesota-accidents-398916.cloudfunctions.net/analysis"
+        result: analyzeResult
+    - returnOutput:
+        return: "Pipeline complete"
