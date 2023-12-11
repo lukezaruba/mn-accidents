@@ -3,7 +3,8 @@ __pycache__
 .env
 node_modules/
 build/
-data/other
+data/
 src/
-api/archive
 res/Zaruba_Exploring_the_Dynamics_of_Vehicle_Accidents.pdf
+notebooks/archive
+res/
