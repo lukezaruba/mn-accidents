@@ -25,6 +25,7 @@ def update_city_id(db):
         FROM ctu
         JOIN geo_accidents acc
         ON ST_Intersects(ctu.geom, acc.geom)
+        WHERE acc.city_id IS NULL;
         """
 
         accident_cities_result = connection.execute(text(city_icr_query))

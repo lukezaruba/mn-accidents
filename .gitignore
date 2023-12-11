@@ -5,6 +5,12 @@ node_modules/
 build/
 data/
 src/
+<<<<<<< HEAD
 res/Zaruba_Exploring_the_Dynamics_of_Vehicle_Accidents.pdf
 notebooks/archive
 res/
+=======
+api/archive
+res/Zaruba_Exploring_the_Dynamics_of_Vehicle_Accidents.pdf
+node_modules
+>>>>>>> d3295084259d88230abbee0da8b8051e053c8e34
