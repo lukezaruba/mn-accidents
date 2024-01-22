@@ -15,8 +15,11 @@ import os
 import functions_framework
 import openai
 import requests
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
+
+load_dotenv()
 
 
 # AI Standardization

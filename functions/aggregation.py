@@ -14,8 +14,11 @@ Alters/updates values in ctu_accidents & time_series tables.
 import os
 
 import functions_framework
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
+
+load_dotenv()
 
 
 def update_city_id(db):

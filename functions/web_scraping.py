@@ -19,8 +19,11 @@ import functions_framework
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 from sqlalchemy import INTEGER, TEXT, TIMESTAMP, create_engine, text
 from sqlalchemy.engine import URL
+
+load_dotenv()
 
 
 class QueryURLs:

@@ -17,11 +17,14 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 import shapely
+from dotenv import load_dotenv
 from esda.adbscan import ADBSCAN, get_cluster_boundary, remap_lbls
 from pysal.explore import esda
 from pysal.lib import weights
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
+
+load_dotenv()
 
 
 def run_lisa(db):
